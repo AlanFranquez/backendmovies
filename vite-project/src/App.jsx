@@ -16,14 +16,14 @@ function App() {
     <>
       <Navbar />
 
-      <h1 className="text-center ">
+      <h1 className="mt-3 mb-2 text-center ">
         Explora y adentrate en el mundo de las peliculas
       </h1>
 
       <blockquote class="blockquote text-center">
         <p class="mb-3">You talkin' to me?</p>
         <footer class="blockquote-footer">
-          Robert De Niro in<cite title="Source Title">Taxi Driver</cite>
+          Robert De Niro in <cite title="Source Title">Taxi Driver</cite>
         </footer>
       </blockquote>
 
@@ -93,10 +93,62 @@ function App() {
         </button>
       </div>
 
-      {data !== null &&
-        data.map((da) => {
-          return <p key={da._id}>{da.name}</p>;
-        })}
+      <div className="container mt-5">
+        <p className="text-center">
+          La pelicula es el unico recurso el cual se ha intentado privatizar a
+          lo largo de los años. Pero todo al final cae por su mismo precio y nos
+          permite ver una de las cosas más importantes de nuestra especie. Somos
+          iguales en dos y solo dos cosas: En que nos vamos a morir y en que nos
+          encantá el cine!
+        </p>
+      </div>
+
+      <h3 className="text-center mt-5">Explora nuestro Catálogo</h3>
+      <div className="subrayado container"></div>
+
+      <div class="overflow-hidden text-center card-group">
+        <div class="card align-items-center">
+          <div className="prueba"></div>
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">
+              This is a wider card with supporting text below as a natural
+              lead-in to additional content. This content is a little bit
+              longer.
+            </p>
+            <p class="card-text">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </p>
+          </div>
+        </div>
+        <div class="card align-items-center">
+          <div className="prueba"></div>
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">
+              This card has supporting text below as a natural lead-in to
+              additional content.
+            </p>
+            <p class="card-text">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </p>
+          </div>
+        </div>
+        <div class="card align-items-center">
+          <div className="prueba"></div>
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">
+              This is a wider card with supporting text below as a natural
+              lead-in to additional content. This card has even longer content
+              than the first to show that equal height action.
+            </p>
+            <p class="card-text">
+              <small class="text-body-secondary">Last updated 3 mins ago</small>
+            </p>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

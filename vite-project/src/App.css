@@ -1,6 +1,23 @@
+.navbar a{
+  color: rgb(233, 233, 234)!important;
+}
+
+
+.nav-link {
+  color: white!important;
+}
+
+
 .imagen-banner {
     height: 95%;
     width: 100%;
+}
+
+.prueba {
+  height: 300px;
+  width: 700px;
+  overflow: hidden;
+  background-color: gray;
 }
 
 .carousel-inner {
@@ -20,4 +37,16 @@
     height: 100%; /* Bootstrap handles width already */
     object-fit: cover; /* or 'contain' if you want stretch instead of crop */
   }
+
+  .subrayado {
+    text-align: center;
+    height: 2px;
+    width: 30%;
+    border: none;
+    background-color: red;
+  }
   
+  .card-img-top {
+    max-width: 100%;
+    height: auto;
+  }

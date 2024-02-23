@@ -1,9 +1,10 @@
 import React from "react";
+import "./App.css";
 
 function Navbar() {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="bg-transparent container navbar navbar-expand-lg">
         <div className="container-fluid">
           <h1>
             <a className="navbar-brand" href="#">
