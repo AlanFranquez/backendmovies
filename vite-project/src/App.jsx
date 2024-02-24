@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import "./App.css";
+import { Link } from "react-router-dom";
 
 function App() {
-  const [data, setdata] = useState(null);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     fetch(import.meta.env.VITE_URL)
       .then((response) => response.json())
-      .then((json) => setdata(json))
+      .then((json) => setData(json))
       .catch((err) => console.log(err));
   }, []);
 
@@ -19,10 +20,11 @@ function App() {
       <h1 className="mt-3 mb-2 text-center ">
         Explora y adentrate en el mundo de las peliculas
       </h1>
+      <div className="subrayado container mb-3"></div>
 
-      <blockquote class="blockquote text-center">
+      <blockquote className="blockquote text-center">
         <p class="mb-3">You talkin' to me?</p>
-        <footer class="blockquote-footer">
+        <footer className="blockquote-footer">
           Robert De Niro in <cite title="Source Title">Taxi Driver</cite>
         </footer>
       </blockquote>
@@ -58,14 +60,14 @@ function App() {
               alt="..."
             />
           </div>
-          <div class="carousel-item">
+          <div className="carousel-item">
             <img
               src="https://images7.alphacoders.com/134/1343645.jpeg"
-              class="d-block w-100"
+              className="d-block w-100"
               alt="..."
             />
           </div>
-          <div class="carousel-item">
+          <div className="carousel-item">
             <img
               src="https://assets.teenvogue.com/photos/55b27d1c74dfbc51751ef467/16:9/w_1600,c_limit/deleted-movie-scenes.jpg"
               class="d-block w-100"
@@ -74,13 +76,16 @@ function App() {
           </div>
         </div>
         <button
-          class="carousel-control-prev"
+          className="carousel-control-prev"
           type="button"
           data-bs-target="#carouselExampleIndicators"
           data-bs-slide="prev"
         >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+          <span
+            className="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
+          <span className="visually-hidden">Previous</span>
         </button>
         <button
           class="carousel-control-next"
@@ -106,47 +111,31 @@ function App() {
       <h3 className="text-center mt-5">Explora nuestro Catálogo</h3>
       <div className="subrayado container"></div>
 
-      <div class="overflow-hidden text-center card-group">
-        <div class="card align-items-center">
-          <div className="prueba"></div>
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content. This content is a little bit
-              longer.
-            </p>
-            <p class="card-text">
-              <small class="text-body-secondary">Last updated 3 mins ago</small>
-            </p>
-          </div>
-        </div>
-        <div class="card align-items-center">
-          <div className="prueba"></div>
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              This card has supporting text below as a natural lead-in to
-              additional content.
-            </p>
-            <p class="card-text">
-              <small class="text-body-secondary">Last updated 3 mins ago</small>
-            </p>
-          </div>
-        </div>
-        <div class="card align-items-center">
-          <div className="prueba"></div>
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content. This card has even longer content
-              than the first to show that equal height action.
-            </p>
-            <p class="card-text">
-              <small class="text-body-secondary">Last updated 3 mins ago</small>
-            </p>
-          </div>
+      <div className="container mt-5">
+        <div className="row">
+          {data !== null &&
+            data.map((da) => (
+              <div key={da._id} className="col-md-4 mb-4">
+                <div className="card h-100">
+                  <img
+                    src={da.image}
+                    className="card-img-top"
+                    style={{ height: "600px", objectFit: "cover" }} // Establecer un tamaño fijo para la imagen
+                    alt=""
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{da.name}</h5>
+                    <p className="card-text">{da.rating}</p>
+                  </div>
+
+                  <button>
+                    <Link className="link" to={`/movies/${da.name}`}>
+                      Ver detalles
+                    </Link>
+                  </button>
+                </div>
+              </div>
+            ))}
         </div>
       </div>
     </>

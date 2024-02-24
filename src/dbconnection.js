@@ -18,7 +18,8 @@ main().catch(err => console.log(err));
     name: String,
     year: String,
     rating: String,
-    image: String
+    image: String,
+    descripcion: String
   });
 
   // Añadir a un modelo

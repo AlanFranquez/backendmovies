@@ -22,7 +22,7 @@ router.get('/', async(req, res, next) => {
 // post
 router.post('/', async(req, res) => {
   
-  const {name, year, rating, image} = req.body;
+  const {name, year, rating, image, descripcion} = req.body;
   const buscar = await Movies.find({name: name});
 
   if(buscar.length > 0) {
@@ -41,10 +41,33 @@ router.post('/', async(req, res) => {
 
 });
 
-router.delete('/', async (req, res) => {
-  const { name, id } = req.body;
+router.get('/search', async(req, res) => {
+  const {name} = req.query;
+  
   try {
-    const movie = await Movies.findByIdAndDelete(id); // Buscar y eliminar la película por su ID
+    if (typeof name !== 'string') {
+      return res.status(400).json({ error: 'El parámetro de búsqueda debe ser una cadena' });
+    }
+    const formattedName = name.replace(/-/g, ' ');
+
+    const words = formattedName.split(' ');
+    const regex = new RegExp(words.join('|'), 'i');
+    const movies = await Movies.find({ name: regex });
+
+      res.json(movies);
+
+    
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({error: 'Hubo un error'});
+  }
+
+})
+
+router.delete('/', async (req, res) => {
+  const { name, _id } = req.body;
+  try {
+    const movie = await Movies.findByIdAndDelete(_id); // Buscar y eliminar la película por su ID
 
     if (!movie) {
       return res.status(404).send('La película no se encontró');
@@ -58,8 +81,8 @@ router.delete('/', async (req, res) => {
 });
 
 router.put('/', async(req, res) => {
-  const {name, year, rating, image} = req.body;
-  const buscar = await Movies.findOneAndUpdate({name}, {name: name, year: year, rating: rating, image: image});
+  const {name, year, rating, image, descripcion} = req.body;
+  const buscar = await Movies.findOneAndUpdate({name}, {name: name, year: year, rating: rating, image: image, descripcion});
   
   if(buscar.length == 0) {
     return res.status(500).json({error: 'Hubo un error'});
